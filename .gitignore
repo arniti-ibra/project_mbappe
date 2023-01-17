@@ -1,3 +1,5 @@
+#Make sure the private key is not baited on in your git repo
+id_rsa
 # Local .terraform directories
 **/.terraform/*
 
