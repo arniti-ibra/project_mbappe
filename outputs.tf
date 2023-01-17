@@ -3,7 +3,7 @@ output "resource_group" {
 }
 
 output "win_username" {
-  value = azurerm_windows_virtual_machine.az_win_vm.admin_username
+  value = azurerm_windows_virtual_machine.az_lin_vm.admin_username
 }
 
 output "public_ip" {
