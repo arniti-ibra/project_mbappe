@@ -115,7 +115,12 @@ resource "azurerm_windows_virtual_machine" "az_lin_vm" {
   computer_name                   = "myvm"
   admin_username                  = "azureuser"
   disable_password_authentication = true
-  
+
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = tls_private_key.vm_ssh.public_key_openssh
+  }
+
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.my_storage_account.primary_blob_endpoint
   }
