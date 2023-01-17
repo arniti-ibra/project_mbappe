@@ -91,7 +91,7 @@ resource "azurerm_windows_virtual_machine" "az_lin_vm" {
   resource_group_name   = azurerm_resource_group.vm_rg.name
   network_interface_ids = [azurerm_network_interface.main.id]
   size                  = "Standard_A2_v2"
-  
+
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
   # delete_os_disk_on_termination = true
