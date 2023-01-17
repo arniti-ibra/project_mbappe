@@ -85,7 +85,7 @@ resource "tls_private_key" "vm_ssh" {
   rsa_bits  = 4096
 }
 
-resource "azurerm_windows_virtual_machine" "az_lin_vm" {
+resource "azurerm_linux_virtual_machine" "az_lin_vm" {
   name                  = format("%s-%s-%s-%s", var.cloud_service_provider, var.operating_system, var.purpose, var.environment_name) #"az-tfvm-sbx"
   location              = azurerm_resource_group.vm_rg.location
   resource_group_name   = azurerm_resource_group.vm_rg.name
@@ -126,12 +126,12 @@ resource "azurerm_windows_virtual_machine" "az_lin_vm" {
   }
 
   tags = {
-    os = "windows"
+    os = "linux"
   }
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown_schedule" {
-  virtual_machine_id = azurerm_windows_virtual_machine.az_lin_vm.id
+  virtual_machine_id = azurerm_linux_virtual_machine.az_lin_vm.id
   location           = azurerm_resource_group.vm_rg.location
   enabled            = true
 
