@@ -60,7 +60,7 @@ resource "azurerm_network_interface" "main" {
     name                          = "testconfiguration1"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = azurerm_public_ip.public_ip.id
+    public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
 }
 
@@ -79,8 +79,8 @@ resource "azurerm_storage_account" "my_storage_account" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_windows_virtual_machine" "az_win_vm" {
-  name                  = format("%s-%s-%s", var.cloud_service_provider, var.purpose, var.environment_name) #"az-tfvm-sbx"
+resource "azurerm_windows_virtual_machine" "az_lin_vm" {
+  name                  = format("%s-%s-%s-%s", var.cloud_service_provider, var.operating_system, var.purpose, var.environment_name) #"az-tfvm-sbx"
   location              = azurerm_resource_group.vm_rg.location
   resource_group_name   = azurerm_resource_group.vm_rg.name
   network_interface_ids = [azurerm_network_interface.main.id]
@@ -115,7 +115,7 @@ resource "azurerm_windows_virtual_machine" "az_win_vm" {
 }
 
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown_schedule" {
-  virtual_machine_id = azurerm_windows_virtual_machine.az_win_vm.id
+  virtual_machine_id = azurerm_windows_virtual_machine.az_lin_vm.id
   location           = azurerm_resource_group.vm_rg.location
   enabled            = true
 

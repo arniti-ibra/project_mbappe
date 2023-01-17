@@ -19,3 +19,7 @@ variable "instance_id" {
 variable "cloud_service_provider" {
   default = "az"
 }
+
+variable "operating_system" {
+  default = "lin"
+}
