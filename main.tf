@@ -91,7 +91,10 @@ resource "azurerm_linux_virtual_machine" "az_lin_vm" {
   resource_group_name   = azurerm_resource_group.vm_rg.name
   network_interface_ids = [azurerm_network_interface.main.id]
   size                  = "Standard_A2_v2"
-
+  depends_on = [
+    data.template_file.add_anisble_user_script,
+    azurerm_resource_group.vm_rg
+  ]
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
   # delete_os_disk_on_termination = true
@@ -143,4 +146,13 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_shutdown_schedule" {
     enabled = false
 
   }
+}
+data "template_file" "add_anisble_user_script" {
+  template = templatefile("${path.module}/add_user.tpl", {
+    user        = var.user
+    # ssh_pub_key = chomp(file(var.ssh_public_key_file))
+    ssh_pub_key = var.ssh_public_key_file
+    python      = var.default_python
+    }
+  )
 }

@@ -18,6 +18,11 @@ output "private_key" {
   value     = tls_private_key.vm_ssh.private_key_pem
   sensitive = true
 }
+
+output "public_key" {
+  value     = tls_private_key.vm_ssh.public_key_pem
+  sensitive = true
+}
 #terraform output -raw private_key > id_rsa
 
 #To get to the /etc directory for an installed distribution, use the distribution's command line with cd / to access the root directory, 
