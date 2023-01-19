@@ -29,7 +29,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "PublicIp1"
   resource_group_name = azurerm_resource_group.vm_rg.name
   location            = azurerm_resource_group.vm_rg.location
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 resource "azurerm_network_security_group" "nsg" {
@@ -110,8 +110,8 @@ resource "azurerm_linux_virtual_machine" "az_lin_vm" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
     version   = "latest"
   }
 
