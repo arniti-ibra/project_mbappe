@@ -23,6 +23,16 @@ output "public_key" {
   value     = tls_private_key.vm_ssh.public_key_pem
   sensitive = true
 }
+#Outputs startup script in a way which a VM can understand in its creation so it can run it in first boot.
+output "base64encode" {
+  value       = base64encode(data.template_file.add_anisble_user_script.rendered)
+  description = "base64 encoded firstboot script"
+}
+
+output "raw" {
+  value       = data.template_file.add_anisble_user_script.rendered
+  description = "raw firstboot script"
+}
 #terraform output -raw private_key > id_rsa
 
 #To get to the /etc directory for an installed distribution, use the distribution's command line with cd / to access the root directory, 
