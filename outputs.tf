@@ -2,7 +2,7 @@ output "resource_group" {
   value = azurerm_resource_group.vm_rg.name
 }
 
-output "win_username" {
+output "lin_username" {
   value = azurerm_linux_virtual_machine.az_lin_vm.admin_username
 }
 
@@ -33,8 +33,13 @@ output "raw" {
   value       = data.template_file.add_anisble_user_script.rendered
   description = "raw firstboot script"
 }
-#terraform output -raw private_key > id_rsa
 
+output "path" {
+  value       = abspath("${path.root}/id_rsa")
+  description = "abspath test"
+}
+#terraform output -raw private_key > id_rsa
+#ssh-keygen -f "/home/arnitibrahimi/.ssh/known_hosts" -R "108.143.21.143"
 #To get to the /etc directory for an installed distribution, use the distribution's command line with cd / to access the root directory, 
 #then ls to list files or explorer.exe . to view in Windows File Explorer. The directory path should look something like: /etc/wsl.conf.
 
