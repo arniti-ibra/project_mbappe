@@ -1,7 +1,6 @@
 ## set up ssh user name and path to python3 ##
 [all:vars]
-ansible_user='ansible'
-ansible_host: 20.16.231.199
+ansible_user='azureuser'
 ansible_become=yes
 ansible_become_method=sudo
 ansible_python_interpreter='/usr/bin/python3'
@@ -24,8 +23,8 @@ ansible_python_interpreter='/usr/bin/python3'
 ; <<<terraform.azure.public_ip_address>>>
 
 ###########################
-[servers:children]
-azure
+; [server]
+; azure
 
-[azure]
-20.16.231.199
+[arnitibrahimi]
+108.143.21.143
