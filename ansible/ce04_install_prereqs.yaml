@@ -1,4 +1,8 @@
 ---
+- name: download
+  apt:
+    name: unzip
+    state: present
 # install java compatible with jenkins
 - name: run apt install openjdk-11-jre
   apt:
@@ -25,9 +29,9 @@
 
 - name: install terraform
   ansible.builtin.unarchive:
-    src: https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip
-    dest: /usr/bin
-    remote_src: true
+    src: https://releases.hashicorp.com/terraform/1.3.7/terraform_1.3.7_linux_amd64.zip
+    dest: /usr/local/bin
+    remote_src: yes
 
 - name: Install google-chrome package from the internet
   ansible.builtin.apt:
